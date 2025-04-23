@@ -1,0 +1,13 @@
+.git
+*.env
+.angular
+.idea
+.vscode
+/node_modules
+dist
+.editorconfig
+.gitignore
+Dockerfile
+README.md
+package-lock.json
+sonar-project.properties
