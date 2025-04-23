@@ -4,4 +4,4 @@
 .vscode
 README.md
 Dockerfile
-sonar.properties
+sonar-project.properties
