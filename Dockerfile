@@ -29,8 +29,6 @@ RUN mkdir -p /var/lib/nginx /var/cache/nginx /usr/share/nginx/html /etc/nginx/co
     addgroup -S app && adduser -S -G app app && \
     chown -R app:app /var/lib/nginx /var/cache/nginx /usr/share/nginx/html /etc/nginx/conf.d /run/nginx
 
-# Cambiar al usuario no privilegiado para ejecutar Nginx
-USER app
 
 # Copiar la configuración personalizada de Nginx
 COPY nginx.conf /etc/nginx/conf.d/
@@ -40,6 +38,9 @@ COPY --from=builder /app/dist/seminario1041-b-front/browser /usr/share/nginx/htm
 
 # Expose port 80
 EXPOSE 80
+
+# Cambiar al usuario no privilegiado para ejecutar Nginx
+USER app
 
 # Comando para iniciar Nginx
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
