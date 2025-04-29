@@ -2,53 +2,10 @@
 <div class="container mt-4">
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h2>TRANSPORTISTAS</h2>
-    <button class="btn btn-primary" (click)="mostrarFormularioCrear = !mostrarFormularioCrear">
+    <button class="btn btn-primary" (click)="mostrarFormularioCrear()">
       <i class="bi bi-plus-circle"></i> Crear Transportista
     </button>
   </div>
-
-  <div *ngIf="mostrarFormularioCrear" class="card p-4 mb-4">
-    <h5>Nuevo Transportista</h5>
-
-    <form (ngSubmit)="crearTransportista()" #formCrear="ngForm">
-      <div class="row">
-        <div class="col-md-4 mb-3">
-          <label for="documento">Documento</label>
-          <input id="documento" type="text" class="form-control" [(ngModel)]="nuevoTransportista.documento" name="documento" required>
-        </div>
-        <div class="col-md-4 mb-3">
-          <label for="razonsocial1">Razón Social</label>
-          <input id="razonsocial1" type="text" class="form-control" [(ngModel)]="nuevoTransportista.razonSocial" name="razonSocial" required>
-        </div>
-        <div class="col-md-4 mb-3">
-          <label for="conacto1">Contacto</label>
-          <input id="conacto1" type="text" class="form-control" [(ngModel)]="nuevoTransportista.contacto" name="contacto" required>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4 mb-3">
-          <label for="tipo1">Tipo de Vehículo</label>
-          <input id="tipo1" type="text" class="form-control" [(ngModel)]="nuevoTransportista.tipoVehiculo" name="tipoVehiculo" required>
-        </div>
-        <div class="col-md-4 mb-3">
-          <label for="capacidad1">Capacidad de Carga</label>
-          <input id="capacidad1" type="text" class="form-control" [(ngModel)]="nuevoTransportista.capacidadCarga" name="capacidadCarga" required>
-        </div>
-        <div class="col-md-4 mb-3">
-          <label for="estado1">Estado</label>
-          <select id="estado1" class="form-select" [(ngModel)]="nuevoTransportista.estado" name="estado" required>
-            <option value="">--Seleccione Estado--</option>
-            <option *ngFor="let estado of estadosDisponibles" [value]="estado">{{ estado }}</option>
-          </select>
-        </div>
-      </div>
-
-      <button type="submit" class="btn btn-success">Guardar</button>
-    </form>
-  </div>
-
-
 
   <!-- Buscadores -->
   <div class="row align-items-end mb-4">
@@ -205,51 +162,4 @@
     <p>No se encontraron transportistas.</p>
   </div>
 
-  <!-- Modal de Edición -->
-  <div class="modal fade" id="editarTransportistaModal" tabindex="-1" aria-labelledby="editarTransportistaModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <form (ngSubmit)="guardarCambios()" #formEditar="ngForm">
-          <div class="modal-header">
-            <h5 class="modal-title" id="editarTransportistaModalLabel">Editar Transportista</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="documento2">Documento</label>
-                <input id="documento2" type="text" class="form-control" [(ngModel)]="transportistaSeleccionado.documento" name="documento" readonly>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="razonsocial2">Razón Social</label>
-                <input id="razonsocial2" type="text" class="form-control" [(ngModel)]="transportistaSeleccionado.razonSocial" name="razonSocial" required>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="contacto2">Contacto</label>
-                <input id="contacto2" type="text" class="form-control" [(ngModel)]="transportistaSeleccionado.contacto" name="contacto" required>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="tipo2">Tipo Vehículo</label>
-                <input id="tipo2" type="text" class="form-control" [(ngModel)]="transportistaSeleccionado.tipoVehiculo" name="tipoVehiculo" required>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="capacidad2">Capacidad de Carga</label>
-                <input id="capacidad2" type="text" class="form-control" [(ngModel)]="transportistaSeleccionado.capacidadCarga" name="capacidadCarga" required>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="estado2">Estado</label>
-                <select id="estado2" class="form-select" [(ngModel)]="transportistaSeleccionado.estado" name="estado" required>
-                  <option *ngFor="let estado of estadosDisponibles" [value]="estado">{{ estado }}</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-success">Guardar Cambios</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
 </div>
