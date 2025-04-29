@@ -51,7 +51,7 @@ export class DespachoComponent  implements OnInit {
   }
 
   editarDespacho(documento: number): void {
-    console.log(`Editar despacho con documento: ${documento}`);
+    console.log(`Editar despacho con id: ${documento}`);
   }
 
   eliminarDespacho(documento: number): void {
@@ -62,8 +62,7 @@ export class DespachoComponent  implements OnInit {
           this.cargarDespacho();
         },
         error: (error) => {
-          console.error(`Error al eliminar el despacho con documento ${documento}:`, error);
-          // Aquí puedes mostrar un mensaje de error al usuario
+          console.error(`Error al eliminar el despacho con id ${documento}:`, error);
         }
       });
     }
