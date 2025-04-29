@@ -17,13 +17,13 @@
                  name="razonSocial" required>
         </div>
         <div class="col-md-6 mb-3">
-          <label for="conacto1">Contacto</label>
-          <input id="conacto1" type="text" class="form-control" [(ngModel)]="nuevoTransportista.contacto"
+          <label for="contacto1">Contacto</label>
+          <input id="contacto1" type="text" class="form-control" [(ngModel)]="nuevoTransportista.contacto"
                  name="contacto" required>
         </div>
-      </div>
 
-      <div class="row">
+
+
         <div class="col-md-6 mb-3">
           <label for="tipo1">Tipo de Vehículo</label>
           <input id="tipo1" type="text" class="form-control" [(ngModel)]="nuevoTransportista.tipoVehiculo"
@@ -42,8 +42,10 @@
           </select>
         </div>
       </div>
-
+      <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cancel click')">Cancelar</button>
       <button type="submit" class="btn btn-success">Guardar</button>
+      </div>
     </form>
   </div>
 </div>
