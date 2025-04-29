@@ -35,9 +35,12 @@ export class TransportistaService {
     );
   }
 
-  eliminarTransportista(id: number): Observable<any> {
-    const url = `${this.apiUrl}/eliminar?id=${id}`;
-    return this.http.delete(url);
+  eliminarTransportista(id: number): Observable<string> {
+    const params = new HttpParams().set('id', id.toString());
+    return this.http.delete<string>(`${this.apiUrl}/eliminar`, {
+      params,
+      responseType: 'text' as unknown as 'json'
+    });
   }
 
   actualizarTransportista(transportista: Transportista): Observable<Transportista> {
