@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Despacho} from '../../interface/despacho';
 
 @Component({
   selector: 'app-editar-despacho',
@@ -6,6 +7,10 @@ import { Component } from '@angular/core';
   templateUrl: './editar-despacho.component.html',
   styleUrl: './editar-despacho.component.scss'
 })
-export class EditarDespachoComponent {
+export class EditarDespachoComponent implements OnInit {
+  @Input() despacho!: Despacho;
 
+  ngOnInit() {
+    console.log(this.despacho);
+  }
 }

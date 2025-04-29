@@ -1,19 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {NgForOf} from '@angular/common';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {DespachoService} from '../../service/despacho/despacho.service';
-import {Despacho} from '../../interface/despacho';
-import {CrearDespachoComponent} from '../crear/crear-despacho.component';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DespachoService } from '../../service/despacho/despacho.service';
+import { Despacho } from '../../interface/despacho';
+import { CrearDespachoComponent } from '../crear/crear-despacho.component';
+import { EditarDespachoComponent } from '../editar/editar-despacho.component';
 
 @Component({
   selector: 'app-despacho',
   imports: [
-    NgForOf
+    CommonModule
   ],
   templateUrl: './despacho.component.html',
   styleUrl: './despacho.component.scss'
 })
-export class DespachoComponent  implements OnInit {
+export class DespachoComponent implements OnInit {
   despacho: Despacho[] = [];
 
   constructor(
@@ -50,8 +51,20 @@ export class DespachoComponent  implements OnInit {
     );
   }
 
-  editarDespacho(documento: number): void {
-    console.log(`Editar despacho con id: ${documento}`);
+  editarDespacho(despacho: Despacho): void {
+    console.log(`Editar despacho con id: ${despacho.id}`);
+    const modalRef = this.modalService.open(CrearDespachoComponent);
+    modalRef.componentInstance.despacho = despacho;
+    modalRef.result.then(
+      (result) => {
+        if (result === 'Despacho creado') {
+          this.cargarDespacho();
+        }
+      },
+      (reason) => {
+        console.log(reason);
+      }
+    );
   }
 
   eliminarDespacho(documento: number): void {
