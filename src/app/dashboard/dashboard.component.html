@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Mi Dashboard</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Transportistas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Reportes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Despacho</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Recepcion</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid mt-3">
+  <div class="row">
+<!--    <div class="col-md-3">-->
+<!--      <div class="list-group">-->
+<!--        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">-->
+<!--          Menú Principal-->
+<!--        </a>-->
+<!--        <a href="#" class="list-group-item list-group-item-action">Opción 1</a>-->
+<!--        <a href="#" class="list-group-item list-group-item-action">Opción 2</a>-->
+<!--        <a href="#" class="list-group-item list-group-item-action">Opción 3</a>-->
+<!--      </div>-->
+<!--    </div>-->
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <router-outlet />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
