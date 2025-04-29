@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Transportista } from '../interface/transportista';
-import {environment} from '../../environments/environment'; // Asegúrate de que la ruta sea correcta
+import { Transportista } from '../../interface/transportista';
+import {environment} from '../../../environments/environment'; // Asegúrate de que la ruta sea correcta
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransportistaService {
-  private readonly apiUrl = `${environment.apiUrlTransportista}/transportista`; // base URL
+  private readonly apiUrl = `${environment.apiUrl}/transportista`; // base URL
 
   constructor(private readonly http: HttpClient) {}
 

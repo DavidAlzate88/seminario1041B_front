@@ -1,0 +1,70 @@
+<div>
+  <div class="modal-header">
+    <h4 class="modal-title">{{ title }}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="mostrarMensaje" class="alert alert-info alert-dismissible fade show" role="alert">
+      {{ mensajeResultado }}
+      <button type="button" class="btn-close" (click)="cerrarMensaje()" aria-label="Close"></button>
+    </div>
+    <form [formGroup]="formularioDespacho" (ngSubmit)="crearDespacho()">
+      <div class="mb-3">
+        <label for="id" class="form-label">id</label>
+        <input type="number" class="form-control" id="id" formControlName="id">
+        <div *ngIf="formularioDespacho.controls['id'].invalid && (formularioDespacho.controls['id'].dirty || formularioDespacho.controls['id'].touched)">
+          <small class="text-danger" *ngIf="formularioDespacho.controls['id'].errors?.['required']">El id es requerido.</small>
+          <small class="text-danger" *ngIf="formularioDespacho.controls['id'].errors?.['pattern']">El id debe contener solo números.</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="codigoSeguimiento" class="form-label">Codigo Seguimiento</label>
+        <input type="text" class="form-control" id="codigoSeguimiento" formControlName="codigoSeguimiento">
+        <div *ngIf="formularioDespacho.controls['codigoSeguimiento'].invalid && (formularioDespacho.controls['codigoSeguimiento'].dirty || formularioDespacho.controls['codigoSeguimiento'].touched)">
+          <small class="text-danger" *ngIf="formularioDespacho.controls['codigoSeguimiento'].errors?.['required']">El codigo seguimiento es requerido.</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="nombreCompletoCliente" class="form-label">Nombre Completo Cliente</label>
+        <input type="text" class="form-control" id="nombreCompletoCliente" formControlName="nombreCompletoCliente">
+        <div *ngIf="formularioDespacho.controls['nombreCompletoCliente'].invalid && (formularioDespacho.controls['nombreCompletoCliente'].dirty || formularioDespacho.controls['nombreCompletoCliente'].touched)">
+          <small class="text-danger" *ngIf="formularioDespacho.controls['nombreCompletoCliente'].errors?.['required']">El nombre completo es requerido.</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="documentoCliente" class="form-label">Documento Cliente</label>
+        <input type="number" class="form-control" id="documentoCliente" formControlName="documentoCliente">
+        <div *ngIf="formularioDespacho.controls['documentoCliente'].invalid && (formularioDespacho.controls['documentoCliente'].dirty || formularioDespacho.controls['documentoCliente'].touched)">
+          <small class="text-danger" *ngIf="formularioDespacho.controls['documentoCliente'].errors?.['required']">El documento cliente es requerido.</small>
+          <small class="text-danger" *ngIf="formularioDespacho.controls['documentoCliente'].errors?.['pattern']">El contacto debe contener solo números.</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="direccionEntrega" class="form-label">Direccion Entrega</label>
+        <input type="text" class="form-control" id="direccionEntrega" formControlName="direccionEntrega">
+        <div *ngIf="formularioDespacho.controls['direccionEntrega'].invalid && (formularioDespacho.controls['direccionEntrega'].dirty || formularioDespacho.controls['direccionEntrega'].touched)">
+          <small class="text-danger" *ngIf="formularioDespacho.controls['direccionEntrega'].errors?.['required']">La direccion entrega es requerida.</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="contacto" class="form-label">Contacto</label>
+        <input type="number" class="form-control" id="contacto" formControlName="contacto">
+        <div *ngIf="formularioDespacho.controls['contacto'].invalid && (formularioDespacho.controls['contacto'].dirty || formularioDespacho.controls['contacto'].touched)">
+          <small class="text-danger" *ngIf="formularioDespacho.controls['contacto'].errors?.['required']">El contacto es requerida.</small>
+          <small class="text-danger" *ngIf="formularioDespacho.controls['contacto'].errors?.['pattern']">El contacto debe contener solo números.</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="urgente" formControlName="urgente">
+          <label class="form-check-label" for="urgente">Urgente</label>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Crear Despacho</button>
+      </div>
+    </form>
+  </div>
+</div>

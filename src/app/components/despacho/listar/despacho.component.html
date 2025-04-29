@@ -1,0 +1,43 @@
+<div>
+  <h5 class="card-title">Transportista</h5>
+
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-success" (click)="abrirModalCrearDespacho()">Crear Despacho</button>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Código de Seguimiento</th>
+      <th>Cliente</th>
+      <th>Documento</th>
+      <th>Dirección de Entrega</th>
+      <th>Contacto</th>
+      <th>Estado</th>
+      <th>Urgente</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of despacho">
+      <td>{{ item.id }}</td>
+      <td>{{ item.codigoSeguimiento }}</td>
+      <td>{{ item.nombreCompletoCliente }}</td>
+      <td>{{ item.documentoCliente }}</td>
+      <td>{{ item.direccionEntrega }}</td>
+      <td>{{ item.contacto }}</td>
+      <td>{{ item.estado }}</td>
+      <td>
+        <span class="badge" [class.bg-success]="!item.urgente" [class.bg-danger]="item.urgente">
+          {{ item.urgente && item.urgente ? 'Si' : 'No' }}
+        </span>
+      </td>
+      <td>
+        <button class="btn btn-sm btn-primary me-2" (click)="editarDespacho(item)">Editar</button>
+        <button class="btn btn-sm btn-danger" (click)="eliminarDespacho(item.id)">Eliminar</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
