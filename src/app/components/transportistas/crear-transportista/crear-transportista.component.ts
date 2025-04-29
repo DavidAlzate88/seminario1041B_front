@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {TransportistaService} from '../../service/transportista.service';
+import {TransportistaService} from '../../../service/transportista/transportista.service';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from '@angular/forms';
 import {NgForOf} from '@angular/common';
-import {Transportista} from '../../interface/transportista';
+import {Transportista} from '../../../interface/transportista';
 
 @Component({
   selector: 'app-crear-transportista',

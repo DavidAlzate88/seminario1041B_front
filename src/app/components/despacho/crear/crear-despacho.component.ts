@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { DespachoService } from '../../service/despacho/despacho.service';
+import { DespachoService } from '../../../service/despacho/despacho.service';
 import { CommonModule } from '@angular/common';
-import {Despacho} from '../../interface/despacho';
+import {Despacho} from '../../../interface/despacho';
 
 @Component({
   selector: 'app-crear-despacho',

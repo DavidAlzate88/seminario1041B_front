@@ -1,8 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
-import {TransportistaService} from '../../service/transportista.service';
-import {Transportista} from '../../interface/transportista';
+import {TransportistaService} from '../../../service/transportista/transportista.service';
+import {Transportista} from '../../../interface/transportista';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

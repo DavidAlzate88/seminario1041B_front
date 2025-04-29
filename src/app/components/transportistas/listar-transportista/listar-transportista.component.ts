@@ -1,9 +1,9 @@
 
 
 import { Component, OnInit } from '@angular/core';
-import { TransportistaService } from '../../service/transportista.service';
+import { TransportistaService } from '../../../service/transportista/transportista.service';
 import { CommonModule } from '@angular/common';  // Necesario para *ngIf, *ngFor
-import { Transportista } from '../../interface/transportista';
+import { Transportista } from '../../../interface/transportista';
 import { NgxPaginationModule } from 'ngx-pagination';
 import {FormsModule} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';

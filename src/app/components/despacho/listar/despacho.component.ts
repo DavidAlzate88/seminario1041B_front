@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DespachoService } from '../../service/despacho/despacho.service';
-import { Despacho } from '../../interface/despacho';
+import { DespachoService } from '../../../service/despacho/despacho.service';
+import { Despacho } from '../../../interface/despacho';
 import { CrearDespachoComponent } from '../crear/crear-despacho.component';
 import { EditarDespachoComponent } from '../editar/editar-despacho.component';
 
