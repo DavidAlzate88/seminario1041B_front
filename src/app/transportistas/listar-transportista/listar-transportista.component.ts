@@ -1,22 +1,14 @@
-declare const bootstrap: {
-  Modal: {
-    new (element: Element, options?: object): BootstrapModal;
-    getInstance(element: Element): BootstrapModal | null;
-    getOrCreateInstance(element: Element): BootstrapModal;
-  };
-};
 
-declare class BootstrapModal {
-  show(): void;
-  hide(): void;
-}
 
 import { Component, OnInit } from '@angular/core';
-import { TransportistaService } from '../service/transportista.service';
+import { TransportistaService } from '../../service/transportista.service';
 import { CommonModule } from '@angular/common';  // Necesario para *ngIf, *ngFor
-import { Transportista } from '../interface/transportista';
+import { Transportista } from '../../interface/transportista';
 import { NgxPaginationModule } from 'ngx-pagination';
 import {FormsModule} from '@angular/forms';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {EditarTransportistaComponent} from '../editar-transportista/editar-transportista.component';
+import {CrearTransportistaComponent} from '../crear-transportista/crear-transportista.component';
 
 
 
@@ -25,11 +17,11 @@ import {FormsModule} from '@angular/forms';
   selector: 'app-consultartransportista',
   standalone: true,
   imports: [CommonModule, NgxPaginationModule, FormsModule],
-  templateUrl: './crudtransportista.component.html',
+  templateUrl: './listar-transportista.component.html',
   //styleUrls: ['./consultartransportista.component.css']
 })
 
-export class CrudtransportistaComponent implements OnInit {
+export class ListarTransportistaComponent implements OnInit {
 
   transportistas: Transportista[] = [];
   resultadosBusqueda: Transportista[] = [];
@@ -44,17 +36,6 @@ export class CrudtransportistaComponent implements OnInit {
   cargando = false;
   error = '';
 
-  mostrarFormularioCrear = false;
-
-  nuevoTransportista: Transportista = {
-    documento: 0,
-    razonSocial: '',
-    contacto: '',
-    tipoVehiculo: '',
-    capacidadCarga: '',
-    estado: ''
-  };
-
   // Transportista que se va a editar
   transportistaSeleccionado: Transportista = {
     documento: 0,
@@ -67,7 +48,8 @@ export class CrudtransportistaComponent implements OnInit {
 
 
 
-  constructor(private transportistaService: TransportistaService) {
+  constructor(private readonly transportistaService: TransportistaService,
+              private readonly modalService: NgbModal) {
   }
 
   ngOnInit(): void {
@@ -148,33 +130,23 @@ export class CrudtransportistaComponent implements OnInit {
     this.page = 1;
   }
 
-  crearTransportista(): void {
-    this.transportistaService.crearTransportista(this.nuevoTransportista)
-      .subscribe({
-        next: (data) => {
-          alert('Transportista creado exitosamente');
-          // Añadir el nuevo transportista en la tabla para que se vea de inmediato
-          this.transportistasFiltrados.push(data);
-          this.resultadosBusqueda.push(data);
+  // Abrir el modal de creacion
+  mostrarFormularioCrear(): void {
+    const modalRef = this.modalService.open(CrearTransportistaComponent);
 
-          // Limpiar el formulario
-          this.nuevoTransportista = {
-            documento: 0,
-            razonSocial: '',
-            contacto: '',
-            tipoVehiculo: '',
-            capacidadCarga: '',
-            estado: ''
-          };
-          this.mostrarFormularioCrear = false; // Cerrar el formulario
-        },
-        error: (err) => {
-          console.error('Error creando transportista', err);
-          alert('Hubo un error al crear el transportista.');
+    modalRef.result.then(
+      (result) => {
+        if (result === 'Transportista creado') {
+          console.log('Transportista creado exitosamente');
+          this.limpiarBusqueda();
+          this.obtenerTransportistas();
         }
-      });
+      },
+      (reason) => {
+        console.log(reason);
+      }
+    )
   }
-
 
   eliminarTransportista(transportista: Transportista): void {
     const confirmacion = confirm(`¿Estás seguro de eliminar a ${transportista.razonSocial}?`);
@@ -209,57 +181,20 @@ export class CrudtransportistaComponent implements OnInit {
     }
   }
 
-  // Abrir el modal de edición
+
   editarTransportista(transportista: Transportista): void {
-    this.transportistaSeleccionado = { ...transportista }; // Hacer copia para edición
-    const modalElement = document.getElementById('editarTransportistaModal');
-    if (modalElement) {
-      const modal = new bootstrap.Modal(modalElement);
-      modal.show();
-    }
-  }
-
-  guardarCambios(): void {
-    this.transportistaService.actualizarTransportista(this.transportistaSeleccionado)
-      .subscribe({
-        next: (data) => {
-          alert('Transportista actualizado exitosamente.');
-
-          // Actualizar en transportistasFiltrados
-          const indexFiltrado = this.transportistasFiltrados.findIndex(t => t.documento === data.documento);
-          if (indexFiltrado !== -1) {
-            this.transportistasFiltrados[indexFiltrado] = data;
-          }
-
-          // Actualizar en resultadosBusqueda
-          const indexBusqueda = this.resultadosBusqueda.findIndex(t => t.documento === data.documento);
-          if (indexBusqueda !== -1) {
-            this.resultadosBusqueda[indexBusqueda] = data;
-          }
-
-          // Cerrar el modal
-          const modalElement = document.getElementById('editarTransportistaModal');
-          if (modalElement) {
-            const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
-            modal.hide();
-          }
-        },
-        error: (err) => {
-          console.error('Error actualizando transportista', err);
-          if (err.status === 404) {
-            alert('El transportista no se puede actualizar porque su estado esta: inactivo');
-          } else {
-            alert('Hubo un error al actualizar el transportista. Inténtalo de nuevo.');
-          }
+    const modalRef = this.modalService.open(EditarTransportistaComponent);
+    modalRef.componentInstance.transportistaSeleccionado = transportista;
+    modalRef.result.then(
+      (result) => {
+        if (result === 'Transportista modificado') {
+          console.log('Transportista modificado exitosamente');
+          this.limpiarBusqueda();
         }
-      });
+      },
+      (reason) => {
+        console.log(reason);
+      }
+    )
   }
-
-  /*editarTransportista(transportista: Transportista): void {
-    console.log('Editar transportista:', transportista);
-    alert(`Editar transportista: ${transportista.razonSocial}`);
-    // Aquí puedes abrir un modal o navegar a otra página para editar
-  }*/
-
-
 }

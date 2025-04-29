@@ -1,0 +1,44 @@
+<div>
+  <div class="modal-header">
+    <h4 class="modal-title">Editar Transportista</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="guardarCambios()" #formEditar="ngForm">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="documento2">Documento</label>
+            <input id="documento2" type="text" class="form-control" [(ngModel)]="transportistaSeleccionado.documento" name="documento" readonly>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="razonsocial2">Razón Social</label>
+            <input id="razonsocial2" type="text" class="form-control" [(ngModel)]="transportistaSeleccionado.razonSocial" name="razonSocial" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="contacto2">Contacto</label>
+            <input id="contacto2" type="text" class="form-control" [(ngModel)]="transportistaSeleccionado.contacto" name="contacto" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="tipo2">Tipo Vehículo</label>
+            <input id="tipo2" type="text" class="form-control" [(ngModel)]="transportistaSeleccionado.tipoVehiculo" name="tipoVehiculo" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="capacidad2">Capacidad de Carga</label>
+            <input id="capacidad2" type="text" class="form-control" [(ngModel)]="transportistaSeleccionado.capacidadCarga" name="capacidadCarga" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="estado2">Estado</label>
+            <select id="estado2" class="form-select" [(ngModel)]="transportistaSeleccionado.estado" name="estado" required>
+              <option *ngFor="let estado of estadosDisponibles" [value]="estado">{{ estado }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cancel click')">Cancelar</button>
+        <button type="submit" class="btn btn-success">Guardar Cambios</button>
+      </div>
+    </form>
+  </div>
+</div>
