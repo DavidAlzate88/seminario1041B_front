@@ -8,7 +8,7 @@ import {environment} from '../../environments/environment'; // Asegúrate de que
   providedIn: 'root'
 })
 export class TransportistaService {
-  private readonly apiUrl = `${environment.apiUrlTransportista}/transportista`; // base URL
+  private readonly apiUrl = `${environment.apiUrl}/transportista`; // base URL
 
   constructor(private readonly http: HttpClient) {}
 

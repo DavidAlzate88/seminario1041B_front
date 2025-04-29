@@ -9,22 +9,13 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-editar-transportista',
   imports: [
     FormsModule,
-    NgForOf,
-    NgIf,
     ReactiveFormsModule
   ],
   templateUrl: './editar-transportista.component.html',
   styleUrl: './editar-transportista.component.scss'
 })
 export class EditarTransportistaComponent {
-  @Input() transportistaSeleccionado: Transportista = {
-    documento: 0,
-    razonSocial: '',
-    contacto: '0',
-    tipoVehiculo: '',
-    capacidadCarga: '',
-    estado: '',
-  };
+  @Input() transportistaSeleccionado!: Transportista;
   estadosDisponibles: string[] = ['activo', 'inactivo'];
 
   constructor(private readonly transportistaService: TransportistaService,
