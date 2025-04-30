@@ -36,7 +36,7 @@ export class CrearDespachoComponent implements OnInit {
       direccionEntrega: ['', [Validators.required]],
       contacto: [null, [Validators.required, Validators.pattern('^[0-9]*$')]],
       urgente: [false],
-      productos: this.fb.array([this.crearProductoFormGroup()])
+      productos: this.fb.array([this.crearProductoFormGroup(0)])
     });
   }
 
@@ -57,9 +57,9 @@ export class CrearDespachoComponent implements OnInit {
     }
   }
 
-  crearProductoFormGroup() {
+  crearProductoFormGroup(id: number) {
     return this.fb.group({
-      id: 0,
+      id,
       codigoProducto: [null,[Validators.required]],
       cantidad: ['', [Validators.required]],
       descripcion: ['', [Validators.required]],
@@ -67,7 +67,7 @@ export class CrearDespachoComponent implements OnInit {
   }
 
   agregarProducto(): void {
-    this.productos.push(this.crearProductoFormGroup());
+    this.productos.push(this.crearProductoFormGroup(this.productos.length));
   }
 
   removerProducto(index: number): void {
