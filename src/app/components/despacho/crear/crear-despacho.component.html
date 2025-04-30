@@ -47,7 +47,7 @@
         </div>
       </div>
       <div class="mb-3">
-        <label for="contacto" class="form-label">Contacto</label>
+        <label for="contacto" class="form-label">Contacto (Telefono cliente)</label>
         <input type="number" class="form-control" id="contacto" formControlName="contacto">
         <div *ngIf="formularioDespacho.controls['contacto'].invalid && (formularioDespacho.controls['contacto'].dirty || formularioDespacho.controls['contacto'].touched)">
           <small class="text-danger" *ngIf="formularioDespacho.controls['contacto'].errors?.['required']">El contacto es requerida.</small>
