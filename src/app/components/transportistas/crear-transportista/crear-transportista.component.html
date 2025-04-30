@@ -1,40 +1,40 @@
 <div>
   <div class="modal-header">
-    <h4 class="modal-title">Editar Transportista</h4>
+    <h4 class="modal-title">Nuevo Transportista</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
     <form (ngSubmit)="crearTransportista()" #formCrear="ngForm">
       <div class="row">
-        <div class="col-md-4 mb-3">
+        <div class="col-md-6 mb-3">
           <label for="documento">Documento</label>
           <input id="documento" type="text" class="form-control" [(ngModel)]="nuevoTransportista.documento"
                  name="documento" required>
         </div>
-        <div class="col-md-4 mb-3">
+        <div class="col-md-6 mb-3">
           <label for="razonsocial1">Razón Social</label>
           <input id="razonsocial1" type="text" class="form-control" [(ngModel)]="nuevoTransportista.razonSocial"
                  name="razonSocial" required>
         </div>
-        <div class="col-md-4 mb-3">
-          <label for="conacto1">Contacto</label>
-          <input id="conacto1" type="text" class="form-control" [(ngModel)]="nuevoTransportista.contacto"
+        <div class="col-md-6 mb-3">
+          <label for="contacto1">Contacto</label>
+          <input id="contacto1" type="text" class="form-control" [(ngModel)]="nuevoTransportista.contacto"
                  name="contacto" required>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-4 mb-3">
+
+
+        <div class="col-md-6 mb-3">
           <label for="tipo1">Tipo de Vehículo</label>
           <input id="tipo1" type="text" class="form-control" [(ngModel)]="nuevoTransportista.tipoVehiculo"
                  name="tipoVehiculo" required>
         </div>
-        <div class="col-md-4 mb-3">
+        <div class="col-md-6 mb-3">
           <label for="capacidad1">Capacidad de Carga</label>
           <input id="capacidad1" type="text" class="form-control" [(ngModel)]="nuevoTransportista.capacidadCarga"
                  name="capacidadCarga" required>
         </div>
-        <div class="col-md-4 mb-3">
+        <div class="col-md-6 mb-3">
           <label for="estado1">Estado</label>
           <select id="estado1" class="form-select" [(ngModel)]="nuevoTransportista.estado" name="estado" required>
             <option value="">--Seleccione Estado--</option>
@@ -42,8 +42,10 @@
           </select>
         </div>
       </div>
-
-      <button type="submit" class="btn btn-success">Guardar</button>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cancel click')">Cancelar</button>
+        <button type="submit" class="btn btn-success">Guardar</button>
+      </div>
     </form>
   </div>
 </div>
