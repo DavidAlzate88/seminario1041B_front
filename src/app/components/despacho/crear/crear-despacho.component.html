@@ -11,7 +11,7 @@
     <form [formGroup]="formularioDespacho" (ngSubmit)="crearDespacho()">
       <div class="mb-3">
         <label for="id" class="form-label">id</label>
-        <input type="number" class="form-control" id="id" formControlName="id">
+        <input type="number" class="form-control" id="id" formControlName="id" [readOnly]="this.despacho">
         <div *ngIf="formularioDespacho.controls['id'].invalid && (formularioDespacho.controls['id'].dirty || formularioDespacho.controls['id'].touched)">
           <small class="text-danger" *ngIf="formularioDespacho.controls['id'].errors?.['required']">El id es requerido.</small>
           <small class="text-danger" *ngIf="formularioDespacho.controls['id'].errors?.['pattern']">El id debe contener solo números.</small>

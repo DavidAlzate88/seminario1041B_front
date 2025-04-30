@@ -19,6 +19,7 @@ export class CrearDespachoComponent implements OnInit {
   @Input() despacho!: Despacho;
   title = '';
   buttonTitle = '';
+  editId = false;
   formularioDespacho: FormGroup;
   mensajeResultado: string = '';
   mostrarMensaje: boolean = false;
@@ -43,6 +44,7 @@ export class CrearDespachoComponent implements OnInit {
   ngOnInit() {
     this.title = !this.despacho ? 'Crear nuevo despacho' : 'Editar despacho';
     this.buttonTitle = !this.despacho ? 'Crear despacho' : 'Editar despacho';
+    this.editId = !this.despacho;
     if (this.despacho) {
       this.formularioDespacho.patchValue({
         id: this.despacho.id,
