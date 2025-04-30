@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {NgForOf, NgIf} from "@angular/common";
+import {CommonModule} from "@angular/common";
 import {TransportistaService} from '../../../service/transportista/transportista.service';
 import {Transportista} from '../../../interface/transportista';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
@@ -9,7 +9,8 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-editar-transportista',
   imports: [
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule,
   ],
   templateUrl: './editar-transportista.component.html',
   styleUrl: './editar-transportista.component.scss'

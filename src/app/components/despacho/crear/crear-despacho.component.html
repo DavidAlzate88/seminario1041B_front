@@ -61,9 +61,37 @@
         </div>
       </div>
 
+      <div formArrayName="productos">
+        <label class="form-label">Productos:</label>
+        <div *ngFor="let productoForm of productos.controls; let i = index" [formGroupName]="i" class="mb-3 border p-2">
+          <h5>Producto {{ i + 1 }}</h5>
+          <div class="mb-3">
+            <label for="codigoProducto_{{i}}" class="form-label">Código del Producto</label>
+            <input type="text" class="form-control" id="codigoProducto_{{i}}" formControlName="codigoProducto" [class.is-invalid]="productos.controls[i].get('codigoProducto')?.invalid && productos.controls[i].get('codigoProducto')?.touched">
+            <div *ngIf="productos.controls[i].get('codigoProducto')?.invalid && productos.controls[i].get('codigoProducto')?.touched" class="invalid-feedback">El código del producto es requerido.</div>
+          </div>
+          <div class="mb-3">
+            <label for="cantidad_{{i}}" class="form-label">Cantidad</label>
+            <input type="number" class="form-control" id="cantidad_{{i}}" formControlName="cantidad" [class.is-invalid]="productos.controls[i].get('cantidad')?.invalid && productos.controls[i].get('cantidad')?.touched">
+            <div *ngIf="productos.controls[i].get('cantidad')?.invalid && productos.controls[i].get('cantidad')?.touched" class="invalid-feedback">
+              <div *ngIf="productos.controls[i].get('cantidad')?.errors?.['required']">La cantidad es requerida.</div>
+              <div *ngIf="productos.controls[i].get('cantidad')?.errors?.['pattern']">La cantidad debe ser un número.</div>
+              <div *ngIf="productos.controls[i].get('cantidad')?.errors?.['min']">La cantidad debe ser al menos 1.</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="descripcion_{{i}}" class="form-label">Descripción</label>
+            <input type="text" class="form-control" id="descripcion_{{i}}" formControlName="descripcion" [class.is-invalid]="productos.controls[i].get('descripcion')?.invalid && productos.controls[i].get('descripcion')?.touched">
+            <div *ngIf="productos.controls[i].get('descripcion')?.invalid && productos.controls[i].get('descripcion')?.touched" class="invalid-feedback">La descripción es requerida.</div>
+          </div>
+          <button type="button" class="btn btn-sm btn-danger" (click)="removerProducto(i)">Remover Producto</button>
+        </div>
+        <button type="button" class="btn btn-sm btn-success" (click)="agregarProducto()">Agregar Producto</button>
+      </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Crear Despacho</button>
+        <button type="submit" class="btn btn-primary">{{ buttonTitle }}</button>
       </div>
     </form>
   </div>

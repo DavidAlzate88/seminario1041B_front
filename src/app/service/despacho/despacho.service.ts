@@ -27,6 +27,8 @@ export class DespachoService {
 
   deleteDespacho(id: number): Observable<any> {
     const url = `${this.apiUrl}/eliminar?id=${id}`;
-    return this.http.delete(url);
+    return this.http.delete(url, {
+      responseType: 'text' as unknown as 'json'
+    });
   }
 }
